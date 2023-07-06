@@ -38,7 +38,7 @@ exports.sendMail = async (req, res, next) => {
         subject: "Expense Tracker Reset Password",
         text: "Link Below",
         html: `<h3>Hi! We received a request from you to reset the password. Here is the link below:</h3>
-        <a href="http://localhost:3000/password/resetPasswordPage/${requestId}">Click Here</a>`
+        <a href="http://13.51.175.217:3000/password/resetPasswordPage/${requestId}">Click Here</a>`
       };
       const emailResponse = await sgMail.send(msg);
       return res.status(200).json({ message: "Reset password link successfully sent to your email address!", success: true });

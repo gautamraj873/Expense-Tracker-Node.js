@@ -53,7 +53,7 @@ ResetPassword.belongsTo(User);
 User.hasMany(Download);
 Download.belongsTo(User);
 
-sequelize.sync({}).then(() => {
+sequelize.sync().then(() => {
   app.listen(process.env.PORT || 3000);
 }).catch((err) => {
   console.log(err);
