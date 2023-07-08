@@ -21,7 +21,7 @@ function login() {
   };
 
   axios
-    .post("http://13.51.175.217:3000/user/login", loginDetails)
+    .post("http://16.171.85.224:3000/user/login", loginDetails)
     .then((result) => {
       alert(result.data.message);
       localStorage.setItem("token", result.data.token);
