@@ -2,6 +2,7 @@ const dateInput = document.getElementById("date");
 const dateShowBtn = document.getElementById("dateShowBtn");
 const tbodyDaily = document.getElementById("tbodyDailyId");
 const tfootDaily = document.getElementById("tfootDailyId");
+const downloadBtn = document.getElementById('downloadBtn');
 
 const monthInput = document.getElementById("month");
 const monthShowBtn = document.getElementById("monthShowBtn");
@@ -161,6 +162,29 @@ async function logout() {
   }
 }
 
+async function downloadReports() {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get("http://16.171.85.224:3000/expense/download", {
+      headers: { Authorization: token },
+    });
+
+    if (response.status === 200) {
+      const a = document.createElement("a");
+      a.href = response.data.fileUrl;
+      a.download = 'myexpense.csv';
+      a.click();
+    } else {
+      throw new Error(response.data.message);
+    }
+  } catch (error) {
+    console.error('Failed to download expense file:', error);
+    alert('Failed to download expense file. Please try again.');
+  }
+}
+
 dateShowBtn.addEventListener("click", getDailyReport);
 monthShowBtn.addEventListener("click", getMonthlyReport);
 logoutBtn.addEventListener("click", logout);
+downloadBtn.addEventListener("click", downloadReports);
+
