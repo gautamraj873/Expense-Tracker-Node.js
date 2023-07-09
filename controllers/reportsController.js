@@ -42,7 +42,20 @@ exports.monthlyReports = async (req, res, next) => {
 };
 
 
-exports.downloadExpense = async (req, res) => {
+exports.downloadDailyReport = async (req, res) => {
+  const userId = req.user.id;
+  try {
+    const expenses = await Expense.findAll({ where: { userId } });
+    const stringifiedExpenses = JSON.stringify(expenses);
+    const filename = `Expense${userId}/${new Date()}.txt`;
+    const fileUrl = await uploadToS3(stringifiedExpenses, filename, userId);
+    res.status(200).json({fileUrl, success: true});
+  } catch (error) {
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  } 
+}
+
+exports.downloadMonthlyReport = async (req, res) => {
   const userId = req.user.id;
   try {
     const expenses = await Expense.findAll({ where: { userId } });
