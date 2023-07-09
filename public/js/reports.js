@@ -165,7 +165,7 @@ async function logout() {
 async function downloadReports() {
   const token = localStorage.getItem("token");
   try {
-    const response = await axios.get("http://16.171.85.224:3000/expense/download", {
+    const response = await axios.get("http://16.171.85.224:3000/reports/download", {
       headers: { Authorization: token },
     });
 

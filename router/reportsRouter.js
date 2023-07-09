@@ -6,6 +6,6 @@ const userAuthentication = require("../middleware/auth");
 router.get("/getReportsPage", reportsController.getReportsPage);
 router.post("/dailyReports", userAuthentication, reportsController.dailyReports);
 router.post("/monthlyReports", userAuthentication, reportsController.monthlyReports);
-router.get('/download', userAuthentication, reportsController.downloadExpense);
+router.get("/download", userAuthentication, reportsController.downloadExpense);
 
 module.exports = router;
