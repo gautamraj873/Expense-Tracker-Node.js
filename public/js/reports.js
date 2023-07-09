@@ -2,7 +2,8 @@ const dateInput = document.getElementById("date");
 const dateShowBtn = document.getElementById("dateShowBtn");
 const tbodyDaily = document.getElementById("tbodyDailyId");
 const tfootDaily = document.getElementById("tfootDailyId");
-const downloadBtn = document.getElementById('downloadBtn');
+const dailyDownloadBtn = document.getElementById("dailyDownloadBtn");
+const monthlyDownloadBtn = document.getElementById("monthlyDownloadBtn");
 
 const monthInput = document.getElementById("month");
 const monthShowBtn = document.getElementById("monthShowBtn");
@@ -162,10 +163,31 @@ async function logout() {
   }
 }
 
-async function downloadReports() {
+async function dailyDownloadReports() {
   const token = localStorage.getItem("token");
   try {
-    const response = await axios.get("http://16.171.85.224:3000/reports/download", {
+    const response = await axios.get("http://16.171.85.224:3000/reports/dailyReports/download", {
+      headers: { Authorization: token },
+    });
+
+    if (response.status === 200) {
+      const a = document.createElement("a");
+      a.href = response.data.fileUrl;
+      a.download = 'myexpense.csv';
+      a.click();
+    } else {
+      throw new Error(response.data.message);
+    }
+  } catch (error) {
+    console.error('Failed to download expense file:', error);
+    alert('Failed to download expense file. Please try again.');
+  }
+}
+
+async function monthlyDownloadReports() {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await axios.get("http://16.171.85.224:3000/reports/monthlyReports/download", {
       headers: { Authorization: token },
     });
 
@@ -186,5 +208,7 @@ async function downloadReports() {
 dateShowBtn.addEventListener("click", getDailyReport);
 monthShowBtn.addEventListener("click", getMonthlyReport);
 logoutBtn.addEventListener("click", logout);
-downloadBtn.addEventListener("click", downloadReports);
+dailyDownloadBtn.addEventListener("click", dailyDownloadReports);
+monthlyDownloadBtn.addEventListener("click", monthlyDownloadReports);
+
 
