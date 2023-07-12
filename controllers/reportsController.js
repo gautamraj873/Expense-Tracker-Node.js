@@ -47,12 +47,7 @@ exports.downloadDailyReport = async (req, res) => {
   const userId = req.user.id;
   try {
     const expenses = await Expense.findAll({
-      where: {
-        date: {
-          [Op.like]: `%${date}%`,
-        },
-        userId: req.user.id,
-      },
+      where: { date: date, userId: req.user.id },
     });
     const stringifiedExpenses = JSON.stringify(expenses);
     const filename = `Expense${userId}/${new Date()}.txt`;
