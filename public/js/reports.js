@@ -161,7 +161,11 @@ async function downloadDailyReport(e) {
   e.preventDefault();
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.get("http://16.171.85.224:3000/reports/downloadDailyReport");
+    const response = await axios.get("http://16.171.85.224:3000/reports/downloadDailyReport", {
+      headers: {
+        Authorization: token
+      }
+    });
 
     if (response.status === 200) {
       const a = document.createElement("a");
@@ -181,7 +185,11 @@ async function downloadMonthlyReport(e) {
   e.preventDefault();
   try {
     const token = localStorage.getItem("token")
-    const response = await axios.get("http://16.171.85.224:3000/reports/downloadMonthlyReport");
+    const response = await axios.get("http://16.171.85.224:3000/reports/downloadMonthlyReport", {
+      headers: {
+        Authorization: token
+      }
+    });
 
     if (response.status === 200) {
       const a = document.createElement("a");
