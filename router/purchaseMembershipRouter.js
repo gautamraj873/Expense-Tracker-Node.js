@@ -1,21 +1,10 @@
 const express = require("express");
-
-const purchaseMembershipController = require("../controllers/purchaseMembershipController");
-
-const authenticatemiddleware = require("../middleware/auth");
-
 const router = express.Router();
+const purchaseMembershipController = require("../controllers/purchaseMembershipController");
+const authenticateMiddleware = require("../middleware/auth");
 
-router.get(
-  "/premiumMembership",
-  authenticatemiddleware,
-  purchaseMembershipController.purchasePremium
-);
+router.get("/premiumMembership", authenticateMiddleware, purchaseMembershipController.purchasePremium);
 
-router.post(
-  "/updateTransactionStatus",
-  authenticatemiddleware,
-  purchaseMembershipController.updateTransactionStatus
-);
+router.post("/updateTransactionStatus", authenticateMiddleware, purchaseMembershipController.updateTransactionStatus);
 
 module.exports = router;

@@ -14,28 +14,28 @@ signIn.addEventListener("click", () => {
   container.classList.remove("right-panel-active");
 });
 
-function login() {
+async function login() {
   const loginDetails = {
     loginEmail: loginEmail.value,
     loginPassword: loginPassword.value,
   };
 
-  axios
-    .post("http://16.171.85.224:3000/user/login", loginDetails)
-    .then((result) => {
-      alert(result.data.message);
-      localStorage.setItem("token", result.data.token);
-      window.location.href = "/homePage";
-    })
-    .catch((error) => {
-      if (error.response) {
-        const errorMessage = error.response.data.message;
-        alert(errorMessage);
-      } else {
-        alert("An error occurred. Please try again later.");
-      }
-    });
+  try {
+    const response = await axios.post(
+      "http://16.171.85.224:3000/user/login",
+      loginDetails
+    );
+    alert(response.data.message);
+    localStorage.setItem("token", response.data.token);
+    window.location.href = "/homePage";
+  } catch (error) {
+    if (error.response) {
+      const errorMessage = error.response.data.message;
+      alert(errorMessage);
+    } else {
+      alert("An error occurred. Please try again later.");
+    }
+  }
 }
 
 loginBtn.addEventListener("click", login);
- 

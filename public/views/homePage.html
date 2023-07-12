@@ -6,21 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Home Page</title>
 
-
-  <!-- ----------------------------------------------------------------------------- -->
-  <!-- css -->
-
+  <!-- CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
   <link rel="stylesheet" href="/css/homePage.css" />
 </head>
 
 <body>
-
-
-  <!--------------------------------------------------------------------------------- -->
   <!-- Nav Bar -->
-
   <nav class="navbar navbar-expand-lg navbar-dark" id="navigation">
     <div class="container-fluid">
       <a href="/homePage">
@@ -47,7 +40,7 @@
         </ul>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
           <button id="buyPremiumBtn" class="topBtn btn py-1" type="button" data-bs-toggle="tooltip"
-            data-bs-placement="left" title="Premium Membership inclues LeaderBoard & Daily & Monthly Reports">
+            data-bs-placement="left" title="Premium Membership includes LeaderBoard & Daily & Monthly Reports">
             Buy Premium &#128081
           </button>
           <button id="logoutBtn" class="topBtn btn py-1" type="button">Log out</button>
@@ -56,80 +49,47 @@
     </div>
   </nav>
 
-
-
-
-  <!-- --------------------------------------------------------------------------------- -->
-  <!-- Add Expense Form-->
-
-
+  <!-- Add Expense Form -->
   <form id="form1" class="d-flex p-2" onsubmit="return false;">
     <div class="input-group mb-3 d-flex m-4" id="category">
-      <button class="btn btn-outline-secondary dropdown-toggle" type="button" name="category" data-bs-toggle="dropdown"
-        aria-expanded="false" id="categoryBtn">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" name="category"
+        data-bs-toggle="dropdown" aria-expanded="false" id="categoryBtn">
         Select Category
       </button>
       <ul class="dropdown-menu" id="categoryMenu" aria-labelledby="categoryBtn">
-        <li class="dropdown-item" data-value="Mobile & Computers">
-          Mobile & Computers
-        </li>
-        <li class="dropdown-item" data-value="Fashion & Beauty">
-          Fashion & Beauty
-        </li>
-        <li class="dropdown-item" data-value="Groceries & Pet Supplies">
-          Groceries & Pet Supplies
-        </li>
-        <li class="dropdown-item" data-value="Home, Furniture & Appliances">
-          Home, Furniture & Appliances
-        </li>
-        <li class="dropdown-item" data-value="Music, Video & Gaming">
-          Music, Video & Gaming
-        </li>
-        <li class="dropdown-item" data-value="Books & Education">
-          Books & Education
-        </li>
-        <li class="dropdown-item" data-value="Toys, Children & Baby">
-          Toys, Children & Baby
-        </li>
-        <li class="dropdown-item" data-value="Payments & Bookings">
-          Payments & Bookings
-        </li>
+        <li class="dropdown-item" data-value="Mobile & Computers">Mobile & Computers</li>
+        <li class="dropdown-item" data-value="Fashion & Beauty">Fashion & Beauty</li>
+        <li class="dropdown-item" data-value="Mobile & Computers">Mobile & Computers</li>
+        <li class="dropdown-item" data-value="Fashion & Beauty">Fashion & Beauty</li>
+        <li class="dropdown-item" data-value="Groceries & Pet Supplies">Groceries & Pet Supplies</li>
+        <li class="dropdown-item" data-value="Home, Furniture & Appliances">Home, Furniture & Appliances</li>
+        <li class="dropdown-item" data-value="Music, Video & Gaming">Music, Video & Gaming</li>
+        <li class="dropdown-item" data-value="Books & Education">Books & Education</li>
+        <li class="dropdown-item" data-value="Toys, Children & Baby">Toys, Children & Baby</li>
+        <li class="dropdown-item" data-value="Payments & Bookings">Payments & Bookings</li>
         <li class="dropdown-item" data-value="Automotive">Automotive</li>
-        <li class="dropdown-item" data-value="Office & Professional">
-          Office & Professional
-        </li>
-        <li class="dropdown-item" data-value="Sports, Outdoor & Travel">
-          Sports, Outdoor & Travel
-        </li>
+        <li class="dropdown-item" data-value="Office & Professional">Office & Professional</li>
+        <li class="dropdown-item" data-value="Sports, Outdoor & Travel">Sports, Outdoor & Travel</li>
         <li class="dropdown-item" data-value="Gifting">Gifting</li>
-        <li class="dropdown-item" data-value="Bills & EMI's">
-          Bills & EMI's
-        </li>
+        <li class="dropdown-item" data-value="Bills & EMI's">Bills & EMI's</li>
         <li class="dropdown-item" data-value="Others">Others</li>
       </ul>
       <input type="hidden" name="category" value="default_value" id="categoryInput" />
     </div>
 
-    <!--******************************************************************* -->
-    <!-- Decsiption -->
     <div class="input-group mb-3 d-flex m-4" id="description">
       <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
-      <input type="text" id="descriptionValue" name="description" class="form-control" aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-default" />
+      <input type="text" id="descriptionValue" name="description" class="form-control"
+        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
     </div>
-
-    <!--  ****************************************************************** -->
-    <!-- Amount -->
 
     <div class="input-group mb-3 d-flex m-4" id="amount">
       <span class="input-group-text">Amount</span>
       <span class="input-group-text"> &#8377;</span>
-      <input type="text" name="amount" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"
-        id="amountValue" />
+      <input type="text" name="amount" class="form-control"
+        aria-label="Dollar amount (with dot and two decimal places)" id="amountValue" />
     </div>
 
-    <!--     ********************************************************************************* -->
-    <!-- Add Expense Btn-->
     <div class="mb-3 d-flex m-4" id="submit">
       <button type="submit" class="btn btn-success" id="submitBtn">
         Add Expense
@@ -137,14 +97,10 @@
     </div>
   </form>
 
-  <!-- --------------------------------------------------------------------------------- -->
   <!-- Table -->
-
-  <div class="container mt-4 p-3 " id="table">
+  <div class="container mt-4 p-3" id="table">
     <table id="example" class="table table-hover" style="width:100%">
 
-      <!-- ------------------------------------------------------------------------- -->
-      <!-- table head -->
       <thead id="tableHead">
         <tr>
           <th scope="col" class="rounded-start">Date</th>
@@ -155,36 +111,17 @@
         </tr>
       </thead>
 
-      <!-- ------------------------------------------------------------------------- -->
-      <!-- table body -->
-
       <tbody id="tbodyId">
-        <!-- <tr class="trStyle">
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>
-              <button class="editDelete btn btn-danger">Delete</button>
-              <button class="editDelete btn btn-secondary">Edit</button>
-            </td>
-          </tr> -->
       </tbody>
     </table>
+
     <nav aria-label="Page navigation example">
       <ul id="paginationUL" class="pagination justify-content-md-end">
-        <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li> -->
       </ul>
     </nav>
   </div>
 
-
-
-  <!-- ---------------------------------------------------------------------------------- -->
-  <!-- scripts -->
-
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
@@ -198,7 +135,6 @@
       alert("Buy Premium to access this feature.");
     }
   </script>
-
 </body>
 
 </html>
