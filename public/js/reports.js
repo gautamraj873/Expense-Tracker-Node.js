@@ -157,9 +157,31 @@ async function logout() {
   }
 }
 
-async function downloadReports(token) {
+async function downloadDailyReport(token) {
   try {
-    const response = await axios.get("http://16.171.85.224:3000/reports/download", {
+    const response = await axios.get("http://16.171.85.224:3000/reports/downloadDailyReport", {
+      headers: {
+        Authorization: token
+      }
+    });
+
+    if (response.status === 200) {
+      const a = document.createElement("a");
+      a.href = response.data.fileUrl;
+      a.download = 'myexpense.csv';
+      a.click();
+    } else {
+      throw new Error(response.data.message);
+    }
+  } catch (error) {
+    console.error('Failed to download expense file:', error);
+    alert('Failed to download expense file. Please try again.');
+  }
+}
+
+async function downloadMonthlyReport(token) {
+  try {
+    const response = await axios.get("http://16.171.85.224:3000/reports/downloadMonthlyReport", {
       headers: {
         Authorization: token
       }
@@ -184,9 +206,9 @@ monthShowBtn.addEventListener("click", getMonthlyReport);
 logoutBtn.addEventListener("click", logout);
 dailyDownloadBtn.addEventListener("click", () => {
   const token = localStorage.getItem("token");
-  downloadReports(token);
+  downloadDailyReport(token);
 });
 monthlyDownloadBtn.addEventListener("click", () => {
   const token = localStorage.getItem("token");
-  downloadReports(token);
+  downloadMonthlyReport(token);
 });

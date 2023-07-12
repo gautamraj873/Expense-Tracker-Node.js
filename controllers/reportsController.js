@@ -42,10 +42,35 @@ exports.monthlyReports = async (req, res, next) => {
 };
 
 
-exports.downloadReport = async (req, res) => {
+exports.downloadDailyReport = async (req, res) => {
+  const date = req.body.date;
   const userId = req.user.id;
   try {
-    const expenses = await Expense.findAll({ where: { userId } });
+    const expenses = await Expense.findAll({
+      where: { date: date, userId: req.user.id },
+    });
+    const stringifiedExpenses = JSON.stringify(expenses);
+    const filename = `Expense${userId}/${new Date()}.txt`;
+    const fileUrl = await uploadToS3(stringifiedExpenses, filename, userId);
+    res.status(200).json({fileUrl, success: true});
+  } catch (error) {
+    res.status(500).json({ success: false, error: 'Internal Server Error' });
+  } 
+}
+
+exports.downloadMonthlyReport = async (req, res) => {
+  const month = req.body.month;
+  const userId = req.user.id;
+  try {
+    const expenses = await Expense.findAll({
+      where: {
+        date: {
+          [Op.like]: `%-${month}-%`,
+        },
+        userId: req.user.id,
+      },
+      raw: true,
+    });
     const stringifiedExpenses = JSON.stringify(expenses);
     const filename = `Expense${userId}/${new Date()}.txt`;
     const fileUrl = await uploadToS3(stringifiedExpenses, filename, userId);
