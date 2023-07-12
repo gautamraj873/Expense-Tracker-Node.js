@@ -157,8 +157,10 @@ async function logout() {
   }
 }
 
-async function downloadDailyReport(token) {
+async function downloadDailyReport(e) {
+  e.preventDefault();
   try {
+    const token = localStorage.getItem("token");
     const response = await axios.get("http://16.171.85.224:3000/reports/downloadDailyReport", {
       headers: {
         Authorization: token
@@ -179,8 +181,10 @@ async function downloadDailyReport(token) {
   }
 }
 
-async function downloadMonthlyReport(token) {
+async function downloadMonthlyReport(e) {
+  e.preventDefault();
   try {
+    const token = localStorage.getItem("token")
     const response = await axios.get("http://16.171.85.224:3000/reports/downloadMonthlyReport", {
       headers: {
         Authorization: token
@@ -204,11 +208,5 @@ async function downloadMonthlyReport(token) {
 dateShowBtn.addEventListener("click", getDailyReport);
 monthShowBtn.addEventListener("click", getMonthlyReport);
 logoutBtn.addEventListener("click", logout);
-dailyDownloadBtn.addEventListener("click", () => {
-  const token = localStorage.getItem("token");
-  downloadDailyReport(token);
-});
-monthlyDownloadBtn.addEventListener("click", () => {
-  const token = localStorage.getItem("token");
-  downloadMonthlyReport(token);
-});
+dailyDownloadBtn.addEventListener("click", downloadDailyReport);
+monthlyDownloadBtn.addEventListener("click", downloadMonthlyReport);
