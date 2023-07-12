@@ -44,11 +44,15 @@ exports.monthlyReports = async (req, res, next) => {
 
 exports.downloadDailyReport = async (req, res) => {
   const date = req.body.date;
-  console.log(date);
   const userId = req.user.id;
   try {
     const expenses = await Expense.findAll({
-      where: { date: date, userId: req.user.id },
+      where: {
+        date: {
+          [Op.like]: `%${date}%`,
+        },
+        userId: req.user.id,
+      },
     });
     const stringifiedExpenses = JSON.stringify(expenses);
     const filename = `Expense${userId}/${new Date()}.txt`;
@@ -61,7 +65,6 @@ exports.downloadDailyReport = async (req, res) => {
 
 exports.downloadMonthlyReport = async (req, res) => {
   const month = req.body.month;
-  console.log(month);
   const userId = req.user.id;
   try {
     const expenses = await Expense.findAll({
