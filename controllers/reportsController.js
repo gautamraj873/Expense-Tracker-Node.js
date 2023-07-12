@@ -44,6 +44,7 @@ exports.monthlyReports = async (req, res, next) => {
 
 exports.downloadDailyReport = async (req, res) => {
   const date = req.body.date;
+  console.log(date);
   const userId = req.user.id;
   try {
     const expenses = await Expense.findAll({
@@ -60,6 +61,7 @@ exports.downloadDailyReport = async (req, res) => {
 
 exports.downloadMonthlyReport = async (req, res) => {
   const month = req.body.month;
+  console.log(month);
   const userId = req.user.id;
   try {
     const expenses = await Expense.findAll({
